@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "defaultMode": "read-only",
+  "egress": {
+    "default": "deny",
+    "allowConfiguredSourcesOnly": true
+  },
+  "limits": {
+    "maxConcurrentJobs": 6,
+    "maxRequestsPerSource": 40,
+    "maxResponseBytes": 25000000,
+    "timeoutMs": 20000
+  },
+  "tools": {
+    "browser": { "enabled": true, "writes": false },
+    "http": { "enabled": true, "writes": false },
+    "ftp": { "enabled": true, "writes": false, "hostAllowlistRequired": true },
+    "nntp": { "enabled": true, "writes": false, "serverAllowlistRequired": true, "groupAllowlistRequired": true },
+    "filesystem": { "enabled": true, "writes": true, "workspaceOnly": true },
+    "hashing": { "enabled": true },
+    "ocr": { "enabled": true },
+    "media": { "enabled": true }
+  },
+  "prohibited": [
+    "credential-guessing",
+    "port-scanning",
+    "authentication-bypass",
+    "private-source-enumeration",
+    "ftp-write",
+    "nntp-posting",
+    "nntp-deletion"
+  ]
+}
