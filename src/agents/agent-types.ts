@@ -9,7 +9,10 @@ export type SearchAgentId =
   | 'visual-context'
   | 'source-provenance'
   | 'entity-resolution'
-  | 'cross-corroboration';
+  | 'cross-corroboration'
+  | 'ftp-research'
+  | 'newsgroup-research'
+  | 'computer-source-hunter';
 
 export interface AgentTask {
   id: string;
@@ -19,8 +22,15 @@ export interface AgentTask {
   query?: string;
   inputUrls?: string[];
   depth: number;
-  budget: { maxRequests: number; timeoutMs: number };
-  constraints: { publicSourcesOnly?: boolean; allowedDomains?: string[]; excludedDomains?: string[] };
+  budget: { maxRequests: number; timeoutMs: number; maxBytes?: number };
+  constraints: {
+    publicSourcesOnly?: boolean;
+    allowedDomains?: string[];
+    excludedDomains?: string[];
+    allowedFtpHosts?: string[];
+    allowedNntpServers?: string[];
+    allowedNntpGroups?: string[];
+  };
 }
 
 export interface AgentFinding {
