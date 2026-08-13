@@ -1,11 +1,4 @@
-export type SearchMode =
-  | 'text'
-  | 'image'
-  | 'face'
-  | 'video'
-  | 'document'
-  | 'archive'
-  | 'metadata';
+export type SearchMode = 'text' | 'image' | 'face' | 'video' | 'document' | 'archive' | 'metadata';
 
 export interface SearchRequest {
   id: string;
