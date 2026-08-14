@@ -230,7 +230,7 @@ class WaybackAdapter implements SearchAdapter {
         const ts = obj.timestamp || '';
         return {
           id: `wayback:${obj.digest}:${ts}`, provider: 'wayback', providerResultId: ts,
-          sourceUrl: ts ? `https://web.archive.org/web/${ts}/${obj.original}` : obj.original,
+          sourceUrl: ts ? `https://web.archive.org/web/${ts}/${obj.original ?? ""}` : (obj.original ?? ""),
           title: `Archived: ${obj.original}`,
           snippet: `Captured ${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)} · ${obj.mimetype}`,
           discoveredAt: new Date().toISOString(), sourceType: 'archive', queryJobId: request.id, providerScore: 0.6,
