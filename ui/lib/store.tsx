@@ -26,6 +26,8 @@ interface AppState {
   commandPaletteOpen: boolean;
   sources: SourceStatus[];
   filters: Record<string, string[]>;
+  resolvedEntities: ResolvedEntity[];
+  confidenceSummary: ConfidenceSummary;
 }
 
 const initialState: AppState = {
@@ -43,6 +45,8 @@ const initialState: AppState = {
   commandPaletteOpen: false,
   sources: getSourceStatuses(),
   filters: {},
+  resolvedEntities: [],
+  confidenceSummary: { overall: 0, high: 0, medium: 0, low: 0 },
 };
 
 // -- Actions --
@@ -51,8 +55,12 @@ type Action =
   | { type: 'SET_SEARCH_MODE'; mode: SearchMode }
   | { type: 'START_SEARCH'; stages: PipelineStage[] }
   | { type: 'UPDATE_PIPELINE_STAGE'; stageId: string; status: PipelineStage['status']; resultCount?: number; elapsedMs?: number; error?: string }
-  | { type: 'COMPLETE_SEARCH'; results: SearchObservation[] }
+  | { type: 'ADD_SEARCH_RESULTS'; results: SearchObservation[] }
+  | { type: 'SET_SEARCH_RESULTS'; results: SearchObservation[] }
+  | { type: 'COMPLETE_SEARCH' }
   | { type: 'CLEAR_SEARCH' }
+  | { type: 'SET_RESOLVED_ENTITIES'; entities: ResolvedEntity[] }
+  | { type: 'SET_CONFIDENCE'; confidence: ConfidenceSummary }
   | { type: 'SELECT_RESULT'; resultId: string | null }
   | { type: 'TOGGLE_INSPECTOR'; open: boolean }
   | { type: 'TOGGLE_SIDEBAR' }
@@ -77,7 +85,7 @@ function reducer(state: AppState, action: Action): AppState {
     case 'SET_SEARCH_MODE':
       return { ...state, searchMode: action.mode };
     case 'START_SEARCH':
-      return { ...state, isSearching: true, pipelineStages: action.stages, searchResults: [] };
+      return { ...state, isSearching: true, pipelineStages: action.stages, searchResults: [], resolvedEntities: [] };
     case 'UPDATE_PIPELINE_STAGE':
       return {
         ...state,
@@ -87,10 +95,18 @@ function reducer(state: AppState, action: Action): AppState {
             : s
         ),
       };
+    case 'ADD_SEARCH_RESULTS':
+      return { ...state, searchResults: [...state.searchResults, ...action.results] };
+    case 'SET_SEARCH_RESULTS':
+      return { ...state, searchResults: action.results };
     case 'COMPLETE_SEARCH':
-      return { ...state, isSearching: false, searchResults: action.results };
+      return { ...state, isSearching: false };
     case 'CLEAR_SEARCH':
-      return { ...state, searchResults: [], pipelineStages: [], searchQuery: '', isSearching: false };
+      return { ...state, searchResults: [], pipelineStages: [], searchQuery: '', isSearching: false, resolvedEntities: [] };
+    case 'SET_RESOLVED_ENTITIES':
+      return { ...state, resolvedEntities: action.entities };
+    case 'SET_CONFIDENCE':
+      return { ...state, confidenceSummary: action.confidence };
     case 'SELECT_RESULT':
       return { ...state, selectedResultId: action.resultId, inspectorOpen: action.resultId !== null };
     case 'TOGGLE_INSPECTOR':
@@ -236,30 +252,134 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const stages = buildPipelineStages(mode);
     dispatch({ type: 'START_SEARCH', stages });
 
-    // Simulate pipeline execution — honestly represents the architecture.
-    // Configured sources (Wayback, Common Crawl) attempt to run.
-    // Unconfigured sources show "not configured".
-    for (let i = 0; i < stages.length; i++) {
-      const stage = stages[i];
-      if (stage.status === 'not-configured') continue;
+    try {
+      const resp = await fetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, mode }),
+      });
 
-      dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: stage.id, status: 'running' });
-      await new Promise((r) => setTimeout(r, 300 + Math.random() * 400));
-
-      // Simulate results for configured sources only
-      const hasResults = Math.random() > 0.3;
-      if (hasResults) {
-        const count = Math.floor(Math.random() * 15) + 1;
-        dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: stage.id, status: 'completed', resultCount: count, elapsedMs: Math.floor(Math.random() * 2000) + 200 });
-      } else {
-        dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: stage.id, status: 'completed', resultCount: 0, elapsedMs: Math.floor(Math.random() * 1500) + 200 });
+      if (!resp.ok || !resp.body) {
+        // Fallback: mark all stages as failed
+        for (const stage of stages) {
+          if (stage.status !== 'not-configured') {
+            dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: stage.id, status: 'failed', error: 'API error' });
+          }
+        }
+        dispatch({ type: 'COMPLETE_SEARCH' });
+        return;
       }
-    }
 
-    // Generate placeholder results to represent what the system found.
-    // In production, these would come from the real adapters.
-    const results: SearchObservation[] = generatePlaceholderResults(query, mode);
-    dispatch({ type: 'COMPLETE_SEARCH', results });
+      // Parse SSE stream
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let intermediateResults: SearchObservation[] = [];
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? ''; // keep incomplete line in buffer
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          try {
+            const event = JSON.parse(line.slice(6)) as {
+              type: string;
+              stageId?: string;
+              stageName?: string;
+              status?: string;
+              resultCount?: number;
+              elapsedMs?: number;
+              error?: string;
+              observations?: SearchObservation[];
+              entities?: any[];
+              confidence?: ConfidenceSummary;
+            };
+
+            switch (event.type) {
+              case 'stage-start':
+                if (event.stageId && event.status) {
+                  dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: event.stageId, status: event.status as PipelineStage['status'] });
+                }
+                break;
+              case 'stage-complete':
+                if (event.stageId) {
+                  dispatch({
+                    type: 'UPDATE_PIPELINE_STAGE',
+                    stageId: event.stageId,
+                    status: 'completed',
+                    resultCount: event.resultCount,
+                    elapsedMs: event.elapsedMs,
+                  });
+                }
+                break;
+              case 'stage-error':
+                if (event.stageId) {
+                  dispatch({
+                    type: 'UPDATE_PIPELINE_STAGE',
+                    stageId: event.stageId,
+                    status: (event.status as PipelineStage['status']) ?? 'failed',
+                    error: event.error,
+                    elapsedMs: event.elapsedMs,
+                  });
+                }
+                break;
+              case 'results':
+                if (event.observations) {
+                  // First 'results' event adds to list; second (final) replaces with ranked
+                  if (intermediateResults.length === 0) {
+                    intermediateResults = event.observations;
+                    dispatch({ type: 'ADD_SEARCH_RESULTS', results: event.observations });
+                  } else {
+                    // Final ranked results — replace
+                    dispatch({ type: 'SET_SEARCH_RESULTS', results: event.observations });
+                  }
+                }
+                break;
+              case 'entities':
+                if (event.entities) {
+                  const entities: ResolvedEntity[] = event.entities.map((e, i) => ({
+                    id: `entity-${Date.now()}-${i}`,
+                    type: e.type,
+                    name: e.name,
+                    aliases: e.aliases ?? [],
+                    confidence: e.confidence,
+                    sources: e.sources ?? [],
+                    relationships: [],
+                    appearances: e.appearances ?? [],
+                    firstSeen: new Date().toISOString(),
+                    lastSeen: new Date().toISOString(),
+                  }));
+                  dispatch({ type: 'SET_RESOLVED_ENTITIES', entities });
+                }
+                break;
+              case 'confidence':
+                if (event.confidence) {
+                  dispatch({ type: 'SET_CONFIDENCE', confidence: event.confidence });
+                }
+                break;
+              case 'done':
+                dispatch({ type: 'COMPLETE_SEARCH' });
+                break;
+            }
+          } catch { /* skip malformed event */ }
+        }
+      }
+
+      dispatch({ type: 'COMPLETE_SEARCH' });
+    } catch (err) {
+      // Network or parse error — mark remaining stages as failed
+      for (const stage of stages) {
+        if (stage.status !== 'not-configured') {
+          dispatch({ type: 'UPDATE_PIPELINE_STAGE', stageId: stage.id, status: 'failed', error: String(err) });
+        }
+      }
+      dispatch({ type: 'COMPLETE_SEARCH' });
+    }
   }, []);
 
   const addEvidence = useCallback((observation: SearchObservation) => {
@@ -308,37 +428,4 @@ export function useApp() {
   const ctx = useContext(AppContext);
   if (!ctx) throw new Error('useApp must be used within AppProvider');
   return ctx;
-}
-
-// -- Helpers --
-function generatePlaceholderResults(query: string, mode: SearchMode): SearchObservation[] {
-  const providers = [
-    { provider: 'wayback', sourceType: 'archive' },
-    { provider: 'common-crawl', sourceType: 'archive' },
-  ];
-  const results: SearchObservation[] = [];
-  const count = Math.floor(Math.random() * 8) + 2;
-  for (let i = 0; i < count; i++) {
-    const p = providers[i % providers.length];
-    results.push({
-      id: `obs-${Date.now()}-${i}-${Math.random().toString(36).slice(2, 6)}`,
-      provider: p.provider,
-      sourceUrl: `https://web.archive.org/web/2024/https://example.com/${encodeURIComponent(query.toLowerCase().replace(/\s+/g, '-'))}`,
-      title: `${query} — related document ${i + 1}`,
-      snippet: `Archived reference containing "${query}" discovered through ${p.provider}. This is a placeholder result representing what the system would return when adapters are fully configured.`,
-      discoveredAt: new Date().toISOString(),
-      publishedAt: new Date(Date.now() - Math.random() * 365 * 86400000).toISOString(),
-      sourceType: p.sourceType,
-      queryJobId: `job-${Date.now()}`,
-      providerScore: 0.5 + Math.random() * 0.4,
-      signals: {
-        textRelevance: 0.4 + Math.random() * 0.5,
-        sourceQuality: 0.5 + Math.random() * 0.4,
-        temporalConsistency: 0.3 + Math.random() * 0.5,
-        corroboration: Math.random() > 0.5 ? Math.random() : undefined,
-      },
-      entities: [],
-    });
-  }
-  return results;
 }
