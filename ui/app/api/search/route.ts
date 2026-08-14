@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { runPipeline, type PipelineEvent } from '@/lib/server/engine';
 import type { SearchRequest } from '@/lib/types';
 
