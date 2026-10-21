@@ -1,0 +1,51 @@
+name: CodeRadar evolution
+on:
+  schedule:
+    - cron: '23 14 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'coderadar/evolution/**'
+      - '.github/workflows/coderadar-evolution.yml'
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: coderadar-evolution
+  cancel-in-progress: false
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify evaluator and search contracts
+        working-directory: coderadar
+        run: node --test tests/*.test.mjs
+      - name: Discover capability candidates
+        working-directory: coderadar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node evolution/discover.mjs
+      - name: Preserve research report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coderadar-evolution-report
+          path: coderadar/evolution-report/
+      - name: Propose bounded catalog update
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if git diff --quiet -- coderadar/evolution/catalog.json; then exit 0; fi
+          BRANCH="coderadar/evolution-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git checkout -b "$BRANCH"
+          git config user.name 'CodeRadar Evolution'
+          git config user.email 'coderadar-evolution@users.noreply.github.com'
+          git add coderadar/evolution/catalog.json
+          git commit -m 'CodeRadar: propose evidence-backed capability catalog additions'
+          git push origin "$BRANCH"
+          gh pr create --draft --base main --head "$BRANCH" --title 'CodeRadar: review discovered capability candidates' --body 'Automated metadata discovery. Evaluator and catalog validation passed. Review source evidence, licenses and relevance before accepting. No discovered code was executed. No automatic merge or Sites deployment.'
