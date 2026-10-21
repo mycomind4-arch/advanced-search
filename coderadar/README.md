@@ -26,3 +26,8 @@ Searches use GitHub's public metadata index, not semantic full-code search. No p
 
 ## Next capabilities
 Code-level indexing, benchmarks for relevance, isolated execution, model-driven implementation, automatic rollback and unattended Sites source synchronization are not yet implemented.
+
+## Activation items verified in first run
+Discovery generated 30 candidates and pushed `coderadar/evolution-39532600162-1`. GitHub denied automatic PR creation: repository Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests. This setting was not changed. Subsequent cycles wait while any evolution proposal branch exists, preventing duplicate proposals.
+
+Sites public API reads can exhaust the shared unauthenticated quota. Configure an optional read-only `GITHUB_TOKEN` in the Site's secret environment settings, then redeploy. Do not paste tokens into chat, commit them, or put them in browser storage. GitHub Actions already uses its own scoped token; it does not share that token with Sites.

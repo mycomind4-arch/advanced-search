@@ -1,2 +1,2 @@
-import { github } from '../../../lib/search.mjs';
+import { github } from '../../../lib/server-github';
 export async function GET(){try{const d=await github('/repos/mycomind4-arch/advanced-search/actions/workflows/coderadar-evolution.yml/runs?per_page=8');return Response.json({runs:d.workflow_runs.map((r:any)=>({id:r.id,status:r.status,conclusion:r.conclusion,url:r.html_url,created:r.created_at})),source:'GitHub Actions',policy:'Discovery and draft pull requests. No automatic code deployment.'},{headers:{'Cache-Control':'private, no-store'}});}catch(e:any){return Response.json({error:e.message,runs:[]},{status:502});}}

@@ -29,7 +29,14 @@ jobs:
         working-directory: coderadar
         env:
           GH_TOKEN: ${{ github.token }}
-        run: node evolution/discover.mjs
+        run: |
+          if test -n "$(git ls-remote --heads origin 'refs/heads/coderadar/evolution-*')"; then
+            mkdir -p evolution-report
+            echo '{"status":"awaiting_review","message":"An evolution proposal branch already exists. Review it before another discovery cycle."}' > evolution-report/run.json
+            echo 'Existing proposal awaits review; no duplicate branch created.'
+            exit 0
+          fi
+          node evolution/discover.mjs
       - name: Preserve research report
         uses: actions/upload-artifact@v4
         with:
