@@ -16,9 +16,15 @@ export const ROLES = Object.freeze([
 export function queriesFor(asOf = new Date()) {
   const date = new Date(asOf);
   if (!Number.isFinite(date.valueOf())) throw new TypeError('Invalid research date');
-  const next = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 3, 1));
-  const range = date.toISOString().slice(0, 7) + ' through ' + next.toISOString().slice(0, 7);
-  return ROLES.map(r => ({ ...r, query: r.query + ' ' + range }));
+  const ending = new Date(date.getTime() + 90 * 86400_000);
+  return ROLES.map(r => ({
+    ...r,
+    // Google News already applies a rolling recency window. Exact future month
+    // strings made queries too restrictive and produced false zero-result runs.
+    query: r.query,
+    windowStart: date.toISOString().slice(0,10),
+    windowEnd: ending.toISOString().slice(0,10),
+  }));
 }
 
 export const OFFICIAL_FEEDS = Object.freeze([
