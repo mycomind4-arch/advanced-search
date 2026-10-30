@@ -19,7 +19,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npx tsc -p intelligence/tsconfig.json
       - run: node --test intelligence/runner.test.mjs
       - name: Collect live public-source report
         id: collect
