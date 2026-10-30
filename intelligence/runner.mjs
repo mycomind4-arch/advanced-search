@@ -54,7 +54,7 @@ export function makeRecord(data, now) {
   if (!url || !data.title) return null;
   const publishedAt = dateString(data.publishedAt);
   return {
-    id: idFor(url),
+    id: idFor(url + '|' + String(data.source) + '|' + String(data.title)),
     domain: data.domain,
     source: data.source,
     url,
@@ -73,9 +73,10 @@ export function consolidate(records) {
   const unique = new Map();
   for (const r of records) {
     if (!r) continue;
-    const existing = unique.get(r.url);
+    const key = r.url + '|' + r.title.toLowerCase();
+    const existing = unique.get(key);
     if (!existing || (existing.verification === 'unverified-lead' && r.verification !== 'unverified-lead')) {
-      unique.set(r.url, r);
+      unique.set(key, r);
     }
   }
   return [...unique.values()].sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''));
@@ -286,7 +287,7 @@ async function main() {
   if (!output || output.startsWith('-')) throw new Error('Invalid output path');
   const officialOnly = process.argv.includes('--official-only');
   const report = await buildReport({
-    searchFn: officialOnly ? undefined : searchWithExistingAdapters,
+    searchFn: officialOnly ? null : searchWithExistingAdapters,
   });
   const storage = await persistReport(report);
   report.storage = storage;
