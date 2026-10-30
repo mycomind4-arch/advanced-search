@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "Global Intelligence Research Network",
+  "horizon_days": 90,
+  "agents": [
+    "government",
+    "military",
+    "geopolitics",
+    "finance",
+    "infrastructure-cyber",
+    "public-health",
+    "earth-space",
+    "open-source-media",
+    "public-records",
+    "skeptical-verification"
+  ],
+  "pipeline": [
+    "discover",
+    "normalize",
+    "deduplicate",
+    "verify",
+    "corroborate",
+    "assess",
+    "publish"
+  ],
+  "evidence_fields": [
+    "source_url",
+    "publisher",
+    "published_at",
+    "observed_at",
+    "claim",
+    "source_type",
+    "corroborating_sources",
+    "contradictions",
+    "confidence",
+    "event_window"
+  ],
+  "rules": {
+    "public_sources_only": true,
+    "no_access_bypass": true,
+    "no_private_person_tracking": true,
+    "exercise_is_not_prediction": true,
+    "require_primary_source_for_high_confidence": true,
+    "require_human_approval_for_external_actions": true
+  }
+}
