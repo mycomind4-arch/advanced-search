@@ -24,6 +24,7 @@ const NAV_SECTIONS = [
   {
     label: 'Intelligence',
     items: [
+      { href: '/intelligence', label: 'Global Intelligence', icon: GlobeIcon },
       { href: '/sources', label: 'Sources', icon: SourcesIcon },
       { href: '/entities', label: 'Entities', icon: EntitiesIcon },
     ],
@@ -150,6 +151,7 @@ function CommandPalette() {
       { section: 'Navigation', label: 'Evidence Board', href: '/evidence' },
       { section: 'Navigation', label: 'Evidence Graph', href: '/graph' },
       { section: 'Navigation', label: 'Timeline', href: '/timeline' },
+      { section: 'Navigation', label: 'Global Intelligence', href: '/intelligence' },
       { section: 'Navigation', label: 'Sources', href: '/sources' },
       { section: 'Navigation', label: 'Entities', href: '/entities' },
       { section: 'Navigation', label: 'Settings', href: '/settings' },
