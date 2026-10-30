@@ -20,7 +20,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx tsc -p intelligence/tsconfig.json
-      - run: node --test intelligence/runner.test.mjs
+      - run: node --test intelligence/*.test.mjs
       - name: Collect live public-source report
         id: collect
         continue-on-error: true
