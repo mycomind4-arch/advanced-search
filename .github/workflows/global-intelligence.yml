@@ -1,0 +1,37 @@
+name: Global Intelligence Research Verification
+on:
+  push:
+    branches: [feature/global-intelligence-network]
+    paths: ['intelligence/**', 'src/**', '.github/workflows/global-intelligence.yml']
+  pull_request:
+    paths: ['intelligence/**', 'src/**', '.github/workflows/global-intelligence.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx tsc -p intelligence/tsconfig.json
+      - run: node --test intelligence/*.test.mjs
+      - name: Collect live public-source report
+        id: collect
+        continue-on-error: true
+        run: node intelligence/runner.mjs --out intelligence-report.json
+      - name: Store report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-intelligence-report
+          path: intelligence-report.json
+          if-no-files-found: warn
+          retention-days: 7
