@@ -9,18 +9,27 @@ export const DOMAINS = [
   'open-source-media', 'public-records', 'skeptical-verification',
 ];
 
-export const SEARCH_TASKS = [
-  ['government', 'FEMA emergency exercise November 2026 national alert'],
-  ['military', 'military NATO exercises November December 2026'],
-  ['geopolitics', 'international crisis security warnings October 2026'],
-  ['finance', 'central bank financial stability liquidity October 2026'],
-  ['infrastructure-cyber', 'CISA critical infrastructure cyber advisory October 2026'],
-  ['public-health', 'WHO disease outbreak emergency October 2026'],
-  ['earth-space', 'NOAA space weather hazards October 2026'],
-  ['open-source-media', 'emergency preparedness government drills November 2026'],
-  ['public-records', 'federal register emergency preparedness exercise October 2026'],
-  ['skeptical-verification', 'FEMA emergency alert routine exercise fact check 2026'],
-];
+export function researchTasksFor(now = new Date().toISOString()) {
+  const day = new Date(now);
+  if (!Number.isFinite(day.valueOf())) throw new Error('Invalid research timestamp');
+  const window = [0, 1, 2, 3].map((offset) =>
+    new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })
+      .format(new Date(Date.UTC(day.getUTCFullYear(), day.getUTCMonth() + offset, 1)))
+  ).join(' OR ');
+  return [
+    ['government', 'FEMA federal emergency exercise drill schedule ' + window],
+    ['military', 'NATO military exercise public schedule deployment ' + window],
+    ['geopolitics', 'diplomatic security alert international crisis ' + window],
+    ['finance', 'central bank financial stability emergency liquidity ' + window],
+    ['infrastructure-cyber', 'CISA critical infrastructure cybersecurity advisories ' + window],
+    ['public-health', 'WHO disease outbreak emergency surveillance ' + window],
+    ['earth-space', 'NOAA severe weather geomagnetic storm forecasts ' + window],
+    ['open-source-media', 'government emergency alert drill national test ' + window],
+    ['public-records', 'Federal Register emergency preparedness notices ' + window],
+    ['skeptical-verification', 'fact check routine disaster exercise false alarm ' + window],
+  ];
+}
+export const SEARCH_TASKS = researchTasksFor();
 
 const MAX_PER_SOURCE = 12;
 const MAX_AGE_DAYS = 45;
@@ -168,7 +177,7 @@ export async function collectOfficial({ fetchImpl = fetch, now = new Date().toIS
   };
 }
 
-export async function collectSearchLeads({ searchFn, now = new Date().toISOString(), tasks = SEARCH_TASKS } = {}) {
+export async function collectSearchLeads({ searchFn, now = new Date().toISOString(), tasks = researchTasksFor(now) } = {}) {
   if (!searchFn) return { records: [], searches: [], status: 'not-configured' };
   const searches = [];
   const records = [];
@@ -214,11 +223,11 @@ export async function searchWithExistingAdapters(query, domain) {
 
 export async function buildReport({
   fetchImpl = fetch, searchFn = searchWithExistingAdapters,
-  now = new Date().toISOString(), feeds = FEEDS, tasks = SEARCH_TASKS,
+  now = new Date().toISOString(), feeds = FEEDS, tasks,
 } = {}) {
   const [official, publicSearch] = await Promise.all([
     collectOfficial({ fetchImpl, now, feeds }),
-    collectSearchLeads({ searchFn, now, tasks }),
+    collectSearchLeads({ searchFn, now, tasks: tasks ?? researchTasksFor(now) }),
   ]);
   const observations = consolidate([...official.records, ...publicSearch.records]);
   return {
