@@ -1,0 +1,16 @@
+{
+  "name": "global-intelligence-research-network",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone public-source intelligence research and evidence history",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "scan": "node src/scan.mjs",
+    "serve": "node src/server.mjs",
+    "check": "node --check src/config.mjs && node --check src/collect.mjs && node --check src/analyze.mjs && node --check src/scan.mjs && node --check src/server.mjs && node --check src/publish.mjs"
+  }
+}
