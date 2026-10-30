@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T07:43:25.975Z",
+  "retentionWindowDays": 100,
+  "runs": [
+    {
+      "id": "6006e05d9b3c2451bd61b68e",
+      "generatedAt": "2026-10-30T07:43:25.975Z",
+      "path": "intelligence/data/snapshots/2026/10/30/6006e05d9b3c2451bd61b68e.json",
+      "officialRecords": 53,
+      "unverifiedLeads": 27,
+      "failedSources": 0,
+      "newOfficial": null,
+      "newLeads": null,
+      "notSeenInSample": null,
+      "reviewCandidates": 0
+    }
+  ]
+}
