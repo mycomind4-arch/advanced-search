@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { writeFile } from 'node:fs/promises';
+import { searchNewsRss } from './news-rss.mjs';
 import { fileURLToPath } from 'node:url';
 
 export const DOMAINS = [
@@ -114,7 +115,7 @@ export const FEEDS = [
   {
     id: 'cisa-kev', domain: 'infrastructure-cyber', type: 'security-advisory',
     url: 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json',
-    extract: (j) => (j.vulnerabilities ?? []).slice(-200).map((x) => ({
+    extract: (j) => (j.vulnerabilities ?? []).slice().sort((a, b) => (b.dateAdded ?? '').localeCompare(a.dateAdded ?? '')).slice(0, 200).map((x) => ({
       url: 'https://www.cisa.gov/known-exploited-vulnerabilities-catalog',
       title: x.cveID + ': ' + x.vulnerabilityName,
       summary: x.shortDescription,
@@ -202,10 +203,13 @@ export async function searchWithExistingAdapters(query, domain) {
   registry.registerMany(builtInAdapters.filter((x) =>
     ['duckduckgo', 'hackernews'].includes(x.id)));
   const orchestrator = new SearchOrchestrator(registry);
-  return orchestrator.execute({
+  const existing = await orchestrator.execute({
     id: 'intelligence-' + domain, mode: 'text', query,
     budget: { maxJobs: 2, timeoutMs: 8000 },
   });
+  if (existing.length) return existing;
+  return searchNewsRss(query);
+
 }
 
 export async function buildReport({
