@@ -21,7 +21,8 @@ test('research roles are distinct and rolling, not pinned to October 2026', () =
   const roles = queriesFor('2027-05-12T00:00:00Z');
   assert.equal(roles.length, 10);
   assert.equal(new Set(roles.map(x => x.id)).size, 10);
-  assert.match(roles[0].query, /2027-05/);
+  assert.equal(roles[0].windowStart, '2027-05-12');
+  assert.equal(roles[0].windowEnd, '2027-08-10');
   assert.doesNotMatch(roles[0].query, /2026-10/);
 });
 test('source URLs must be HTTP(S) and tracking-free', () => {
