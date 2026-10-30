@@ -1,10 +1,20 @@
-name: Global Intelligence Research Verification
+name: Global Intelligence Research
 on:
   push:
-    branches: [feature/global-intelligence-network]
-    paths: ['intelligence/**', 'src/**', '.github/workflows/global-intelligence.yml']
+    branches: [main, feature/intelligence-history-dashboard]
+    paths:
+      - 'intelligence/**'
+      - 'ui/app/intelligence/**'
+      - 'ui/components/intelligence/**'
+      - 'ui/components/shell/Shell.tsx'
+      - '.github/workflows/global-intelligence.yml'
   pull_request:
-    paths: ['intelligence/**', 'src/**', '.github/workflows/global-intelligence.yml']
+    paths:
+      - 'intelligence/**'
+      - 'ui/app/intelligence/**'
+      - 'ui/components/intelligence/**'
+      - 'ui/components/shell/Shell.tsx'
+      - '.github/workflows/global-intelligence.yml'
   workflow_dispatch:
   schedule:
     - cron: '17 */6 * * *'
@@ -21,13 +31,13 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npx tsc -p intelligence/tsconfig.json
-      - run: node --test intelligence/*.test.mjs
-      - name: Collect live public-source report
-        id: collect
-        continue-on-error: true
+      - name: Compile existing search adapters
+        run: npx tsc -p intelligence/tsconfig.json
+      - name: Test evidence and historical analysis
+        run: node --test intelligence/*.test.mjs
+      - name: Collect live public-source evidence
         run: node intelligence/runner.mjs --out intelligence-report.json
-      - name: Store report artifact
+      - name: Save report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -35,3 +45,25 @@ jobs:
           path: intelligence-report.json
           if-no-files-found: warn
           retention-days: 7
+  publish:
+    needs: research
+    if: github.ref == 'refs/heads/main' && needs.research.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: global-intelligence-history-writer
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: global-intelligence-report
+      - name: Store immutable snapshot and update history index
+        run: node intelligence/publish-history.mjs --input intelligence-report.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
