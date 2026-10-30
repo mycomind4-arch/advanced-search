@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Global Intelligence Research Network</title>
+<style>
+:root{font:14px/1.55 ui-sans-serif,system-ui,-apple-system,sans-serif;color:#e4ecf7;background:#080f1c;--muted:#92a5bd;--panel:#121e2e;--line:#28384e;--accent:#84baff;--success:#52d6a2;--warn:#f6c66b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#172944 0,transparent 38%),#080f1c}
+a{color:var(--accent)}a:hover{text-decoration:underline}button,select,input{font:inherit}
+header{border-bottom:1px solid var(--line);background:#0b1626e6;padding:17px clamp(18px,4vw,60px)}
+header .brand{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:800}
+header h1{font-size:clamp(22px,3vw,34px);margin:5px 0}
+header p{color:var(--muted);margin:0}
+main{max-width:1440px;margin:auto;padding:25px clamp(15px,4vw,60px) 90px}
+.muted{color:var(--muted)}.small{font-size:12px}.stamp{border:1px solid var(--line);border-radius:50px;display:inline-flex;padding:4px 12px;color:var(--success);font-size:12px}
+.summary{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:17px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:16px}
+.summary p{max-width:850px;margin:5px 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px}
+.card .key{color:var(--muted);font-size:12px}.card .value{font-size:30px;font-weight:750;letter-spacing:-.04em;margin:4px 0}.card p{margin:0;color:var(--muted);font-size:12px}
+.panels{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin:16px 0}
+h2{font-size:16px;margin:0 0 12px}h3{font-size:14px;margin:0 0 8px}
+.status-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.status{padding:10px;background:#0b1523;border:1px solid var(--line);border-radius:8px;overflow-wrap:anywhere}
+.status span{float:right}.good{color:var(--success)}.bad{color:#f79092}.warn{color:var(--warn)}
+.status small{display:block;margin-top:2px;color:var(--muted)}
+.timeline{display:flex;gap:6px;height:144px;align-items:end;padding:18px 0 0;border-bottom:1px solid var(--line)}
+.bar-group{display:flex;flex-direction:column;justify-content:flex-end;height:120px;flex:1;min-width:7px}
+.bar-official{background:#77aefe}.bar-lead{background:#dfb562}
+.legend{display:flex;gap:17px;margin-top:11px;font-size:12px;color:var(--muted)}
+.swatch{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}.swatch.a{background:#77aefe}.swatch.b{background:#dfb562}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px}
+input,select{background:#0b1523;border:1px solid #354761;border-radius:8px;color:#e4ecf7;padding:9px 10px;min-width:150px}input[type=search]{flex:1;min-width:180px}
+label{color:var(--muted);font-size:12px}label input{min-width:0}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:740px}
+th{font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);text-align:left;border-bottom:1px solid var(--line)}
+td,th{padding:11px 10px;vertical-align:top}
+td{border-bottom:1px solid #223049}
+td:first-child{min-width:285px}td .source{color:var(--muted);font-size:11px;margin-top:5px}
+.pill{font-size:11px;border-radius:50px;padding:3px 8px;background:#1b3852;color:#a8d3ff;white-space:nowrap}
+.pill.lead{background:#39301c;color:#f4cc7a}
+.empty{padding:25px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}
+.notice{padding:10px 14px;background:#312b1c;border-radius:8px;color:#f4d39b;font-size:12px;margin-top:12px}
+footer{margin-top:22px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panels{grid-template-columns:1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr}.status-list{grid-template-columns:1fr}.card{padding:12px}}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">Public-source intelligence / Evidence-led analysis</div>
+<h1>Global Intelligence Research Network</h1>
+<p>Discover developments, preserve original sources, compare runs and challenge unsupported interpretations.</p>
+</header>
+<main>
+<div id="loading" class="empty" role="status">Loading the latest public-source research snapshot…</div>
+<div id="dashboard" hidden>
+<section class="summary" aria-label="Assessment">
+<div>
+<div id="status" class="stamp">Assessment: no coordinated global event established</div>
+<p>Scheduled exercises, official warnings, and coincident incidents do not establish a secret plan. All search results are unverified until investigated independently.</p>
+<div id="run" class="small muted"></div>
+</div>
+<a href="https://github.com/mycomind4-arch/advanced-search/actions/workflows/standalone-global-intelligence.yml" target="_blank" rel="noopener noreferrer">View collection runs ↗</a>
+</section>
+<section class="grid" aria-label="Collection metrics">
+<div class="card"><div class="key">Official records</div><div class="value" id="official">—</div><p>Source-published, not necessarily predictive</p></div>
+<div class="card"><div class="key">Unverified leads</div><div class="value" id="leads">—</div><p>Public reporting awaiting review</p></div>
+<div class="card"><div class="key">New to sample</div><div class="value" id="new">—</div><p>Differences from previous bounded scan</p></div>
+<div class="card"><div class="key">Stored scans</div><div class="value" id="runs">—</div><p>Historical records indexed</p></div>
+</section>
+<section class="panels">
+<div class="card">
+<h2>Historical collection volume</h2>
+<div class="small muted">Counts change with source coverage and per-source limits; not a risk or severity score.</div>
+<div class="timeline" id="timeline" aria-label="Historical run bar chart"></div>
+<div class="legend"><span><i class="swatch a"></i>Official</span><span><i class="swatch b"></i>Leads</span></div>
+</div>
+<div class="card">
+<h2>Official source health</h2>
+<div class="status-list" id="sources"></div>
+</div>
+</section>
+<section class="card" style="margin-bottom:16px">
+<h2>Independent source review</h2>
+<p class="small muted" id="reviews">This workflow identifies possible matching official publications for human review. A shared headline is not independent confirmation.</p>
+<div id="reviewList"></div>
+<div class="notice">No automatically generated disaster prediction, future catastrophe date or cross-agency causal claim.</div>
+</section>
+<section class="card">
+<h2>Evidence ledger</h2>
+<div class="tools">
+<input type="search" id="search" placeholder="Search titles and sources…" aria-label="Search evidence">
+<select id="domain" aria-label="Filter by research domain"><option value="">All domains</option></select>
+<select id="kind" aria-label="Filter by confidence"><option value="">All classifications</option><option value="official-record">Official record</option><option value="unverified-lead">Unverified lead</option></select>
+<label><input type="checkbox" id="newOnly"> New to sample</label>
+<span class="small muted" id="total"></span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Evidence and source</th><th>Domain</th><th>Published</th><th>Classification</th></tr></thead>
+<tbody id="evidence"></tbody>
+</table></div>
+<div id="nothing" class="empty" hidden>No evidence matches your filters.</div>
+</section>
+<footer>Public evidence is not personal surveillance. Sources and their dates are preserved. This dashboard deliberately separates monitoring from verified conclusions.</footer>
+</div>
+</main>
+<script>
+(async function(){
+  const byId = x => document.getElementById(x);
+  const safeUrl = input => {try{const u=new URL(input);return ['http:','https:'].includes(u.protocol)?u.href:null}catch{return null}};
+  const pretty = date => !date || Number.isNaN(Date.parse(date)) ? 'Unknown' : new Date(date).toLocaleString();
+  const label = (s, t) => {const node=document.createElement('span'); node.textContent=t; if(s) node.className=s;return node;};
+  function put(id, value){byId(id).textContent=String(value)}
+  try{
+    const responses=await Promise.all([fetch('./data/latest.json',{cache:'no-store'}),fetch('./data/index.json',{cache:'no-store'})]);
+    if(responses.some(r=>!r.ok)) throw new Error('No saved snapshot found. Run npm run scan or enable the GitHub history publication.');
+    const [data, history]=await Promise.all(responses.map(r=>r.json()));
+    if(!Array.isArray(data.observations)||!Array.isArray(history.entries))throw new Error('Invalid dataset format');
+    const items=data.observations;
+    put('official',data.counts.officialRecords);
+    put('leads',data.counts.unverifiedLeads);
+    put('new',data.comparisons?.newInSample??'—');
+    put('runs',history.entries.length);
+    put('run','Latest scan: '+pretty(data.generatedAt)+' · '+data.runId+' · '+data.counts.failedOfficialSources+' official feed errors');
+    const counts=history.entries.slice(0,32).reverse();
+    const max=Math.max(1,...counts.map(x=>(x.counts.officialRecords||0)+(x.counts.unverifiedLeads||0)));
+    for(const r of counts){
+      const group=document.createElement('div');group.className='bar-group';
+      group.title=pretty(r.generatedAt)+': '+r.counts.officialRecords+' official, '+r.counts.unverifiedLeads+' leads';
+      for(const [className,amount] of [['bar-lead',r.counts.unverifiedLeads],['bar-official',r.counts.officialRecords]]){
+        const bar=document.createElement('div');bar.className=className;bar.style.height=(amount/max*120)+'px';group.append(bar);
+      }
+      byId('timeline').append(group);
+    }
+    for(const s of data.officialSourceStatus||[]){
+      const row=document.createElement('div');row.className='status';
+      row.append(label('',s.id+' '));
+      row.append(label(s.status==='ok'?'good':'bad',s.status==='ok'?'●':'✕'));
+      const sub=document.createElement('small');sub.textContent=s.status==='ok'?s.accepted+' accepted':('Unavailable: '+(s.error||'unknown'));row.append(sub);
+      byId('sources').append(row);
+    }
+    const review=data.reviewCandidates||[];
+    put('reviews',review.length+' cross-publisher title matches require review. None is automatically independently verified.');
+    for(const candidate of review.slice(0,5)){
+      const row=document.createElement('p');row.className='small';
+      row.textContent=candidate.title+' · '+candidate.publishers.join(', ')+' · human review required';
+      byId('reviewList').append(row);
+    }
+    const domains=[...new Set(items.map(x=>x.domain))].sort();
+    for(const d of domains){const opt=document.createElement('option');opt.value=d;opt.textContent=d;byId('domain').append(opt)}
+    const freshIds=new Set(data.comparisons?.newObservationIds||[]);
+    function refresh(){
+      const q=byId('search').value.toLowerCase().trim();
+      const domain=byId('domain').value,kind=byId('kind').value;
+      const onlyNew=byId('newOnly').checked;
+      const result=items.filter(x=>(!domain||x.domain===domain)&&(!kind||x.classification===kind)&&(!onlyNew||freshIds.has(x.id))&&
+        (!q||[x.title,x.description,x.source,x.domain].some(v=>String(v||'').toLowerCase().includes(q))));
+      put('total',result.length+' records');
+      const body=byId('evidence');body.replaceChildren();
+      for(const x of result.slice(0,180)){
+        const tr=document.createElement('tr'), title=document.createElement('td');
+        const href=safeUrl(x.url);
+        const link=document.createElement(href?'a':'span');
+        link.textContent=x.title+(href?' ↗':'');
+        if(href){link.href=href;link.target='_blank';link.rel='noopener noreferrer'}
+        title.append(link);
+        const source=document.createElement('div');source.className='source';source.textContent=x.source;
+        if(freshIds.has(x.id)) source.textContent+=' · new to sample';
+        title.append(source);tr.append(title);
+        for(const text of [x.domain,pretty(x.publishedAt)]){const td=document.createElement('td');td.textContent=text;tr.append(td)}
+        const state=document.createElement('td');
+        state.append(label('pill'+(x.classification==='unverified-lead'?' lead':''),
+          x.classification==='official-record'?'Official record':'Unverified lead'));tr.append(state);
+        body.append(tr);
+      }
+      byId('nothing').hidden=result.length>0;
+    }
+    for(const id of ['search','domain','kind','newOnly'])byId(id).addEventListener('input',refresh);
+    refresh();
+    byId('dashboard').hidden=false;
+    byId('loading').hidden=true;
+  }catch(err){
+    byId('loading').textContent='Dashboard not ready: '+err.message+' No events or absence of events can be inferred from a missing report.';
+  }
+})();
+</script>
+</body>
+</html>

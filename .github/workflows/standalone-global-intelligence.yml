@@ -1,0 +1,79 @@
+name: Standalone Global Intelligence Research Network
+on:
+  push:
+    branches: [main, feature/standalone-global-intelligence]
+    paths:
+      - 'global-intelligence-network/**'
+      - '.github/workflows/standalone-global-intelligence.yml'
+  pull_request:
+    paths:
+      - 'global-intelligence-network/**'
+      - '.github/workflows/standalone-global-intelligence.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '47 */6 * * *'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: global-intelligence-network
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate standalone source
+        run: npm run check
+      - name: Unit tests
+        run: npm test
+      - name: Collect live public-source evidence
+        run: npm run scan -- --out data
+      - name: Package dashboard preview
+        run: |
+          mkdir -p site/data
+          cp public/index.html site/index.html
+          cp data/latest.json data/index.json site/data/
+      - name: Save research data
+        uses: actions/upload-artifact@v4
+        with:
+          name: standalone-intelligence-data
+          path: global-intelligence-network/data/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Save dashboard preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: standalone-intelligence-dashboard
+          path: global-intelligence-network/site/
+          if-no-files-found: error
+          retention-days: 14
+  publish-history:
+    needs: research
+    if: github.ref == 'refs/heads/main' && needs.research.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: standalone-global-intelligence-history
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: global-intelligence-network
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: standalone-intelligence-data
+          path: global-intelligence-network/data
+      - name: Publish immutable snapshot
+        run: node src/publish.mjs data/latest.json
+        env:
+          GITHUB_TOKEN: \${{ github.token }}
