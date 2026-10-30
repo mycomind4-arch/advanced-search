@@ -13,7 +13,7 @@ node intelligence/runner.mjs --out intelligence-report.json
 node intelligence/runner.mjs --official-only --out intelligence-report.json
 ```
 
-GitHub Actions workflow: `.github/workflows/global-intelligence.yml`. Runs on feature-branch pushes and PRs, uploads a JSON artifact retained for 7 days. Manual workflow dispatch is available when the workflow is present on the default branch. No recurring schedule is configured yet, and no deployment is automatic.
+GitHub Actions workflow: `.github/workflows/global-intelligence.yml`. Runs on relevant development-branch and main pushes, pull requests, manual dispatch, and a six-hour UTC cron. The research job has read-only permissions and uploads a JSON artifact retained for 7 days. A separate publish job with scoped GitHub `contents: write` runs **only** when the workflow executes on `main` and research succeeds. Publication stores immutable snapshots plus `latest.json` and `index.json` on the separate `intelligence-history` Git branch; it never commits research reports onto application `main`. The first successful publication creates its own baseline. GitHub cron timing may be delayed.
 
 ## Inputs
 - USGS significant earthquakes (observations)
@@ -38,9 +38,17 @@ Feed coverage is limited, and specific source APIs may fail or rate limit. Each 
 ## Storage
 The runner always writes a local JSON report for review. An optional database writer is present but disabled unless **both** `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are supplied from a secured server runtime. Do not put secret credentials in frontend code, GitHub files or logs. Apply `intelligence/schema.sql` **only to a dedicated project selected for this system**. No existing Supabase project has been changed.
 
+## History and dashboard
+- `/intelligence` in the existing `ui/` Next.js application displays run history, source-health badges, bounded sample counts, case-insensitive ledger search, and source/verification filters. No site deployment is implied by a passing build.
+- The historical branch keeps full immutable snapshot JSON and an approximately 100-day index (up to 400 runs). Source-level gaps and run-to-run changes are labeled as sampling differences rather than changes in world risk.
+- Cross-source candidates require matching normalized titles from two distinct official publishers. Even that is **not** sufficient to establish reporting independence: candidates remain subject to manual review. News aggregation and syndicated headlines cannot create confirmed corroboration.
+- The search tasks derive calendar terms from each run's UTC date, with a rolling forward research window rather than fixed October/November 2026 queries.
+- On a public GitHub repository, this history branch and all committed evidence snapshots are public; use a private repository for nonpublic investigations.
+- Existing Supabase projects are not modified. The optional schema remains unconfigured and is not a required part of the GitHub-based historical archive.
+
 ## Next milestones
-1. Store report history in a dedicated project with row restrictions, retention and integrity checks.
-2. Add direct official military, international public-health and financial regulatory sources.
-3. Implement independent reporting-chain checks, contradiction detection, and human review.
-4. Add dashboard, controlled scheduling and meaningful notifications after regression validation.
+1. Expand verified international source coverage beyond the current six official feeds.
+2. Add human-reviewed provenance decisions, contradiction detection and alert thresholds.
+3. Deploy the Next.js dashboard to an explicitly configured site and validate its live reachability.
+4. If dedicated database storage is required, choose a separate Supabase project and verify restricted access.
 
