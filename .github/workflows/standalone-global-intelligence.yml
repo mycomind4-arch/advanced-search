@@ -76,4 +76,4 @@ jobs:
       - name: Publish immutable snapshot
         run: node src/publish.mjs data/latest.json
         env:
-          GITHUB_TOKEN: \${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
