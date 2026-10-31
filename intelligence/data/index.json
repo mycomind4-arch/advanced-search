@@ -1,8 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T22:27:27.703Z",
+  "updatedAt": "2026-10-31T05:53:39.610Z",
   "retentionWindowDays": 100,
   "runs": [
+    {
+      "id": "120a6733f24dc22d9c86ccf4",
+      "generatedAt": "2026-10-31T05:53:39.610Z",
+      "path": "intelligence/data/snapshots/2026/10/31/120a6733f24dc22d9c86ccf4.json",
+      "officialRecords": 51,
+      "unverifiedLeads": 27,
+      "failedSources": 0,
+      "newOfficial": 2,
+      "newLeads": 6,
+      "notSeenInSample": 4,
+      "reviewCandidates": 0
+    },
     {
       "id": "2437acaaf39d510c5e7573d9",
       "generatedAt": "2026-10-30T22:27:27.703Z",
