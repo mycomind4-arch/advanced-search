@@ -1,8 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T21:57:06.047Z",
+  "updatedAt": "2026-11-03T07:16:42.047Z",
   "retentionDays": 100,
   "entries": [
+    {
+      "runId": "20261103071642047",
+      "generatedAt": "2026-11-03T07:16:42.047Z",
+      "counts": {
+        "officialRecords": 50,
+        "unverifiedLeads": 27,
+        "failedOfficialSources": 0,
+        "failedRoleSearches": 0
+      },
+      "newInSample": 9,
+      "reviewCandidateCount": 0
+    },
     {
       "runId": "20261102215706047",
       "generatedAt": "2026-11-02T21:57:06.047Z",
