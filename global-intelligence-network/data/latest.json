@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "runId": "20261109224349245",
-  "generatedAt": "2026-11-09T22:43:49.245Z",
+  "runId": "20261110074558553",
+  "generatedAt": "2026-11-10T07:45:58.553Z",
   "horizonDays": 90,
   "officialSourceStatus": [
     {
@@ -13,7 +13,7 @@
     {
       "id": "noaa-space-weather",
       "status": "ok",
-      "inspected": 69,
+      "inspected": 70,
       "accepted": 12
     },
     {
@@ -45,7 +45,7 @@
     {
       "role": "government",
       "status": "ok",
-      "inspected": 4,
+      "inspected": 6,
       "accepted": 3
     },
     {
@@ -75,7 +75,7 @@
     {
       "role": "public-health",
       "status": "ok",
-      "inspected": 14,
+      "inspected": 15,
       "accepted": 3
     },
     {
@@ -87,7 +87,7 @@
     {
       "role": "open-source-media",
       "status": "ok",
-      "inspected": 19,
+      "inspected": 17,
       "accepted": 3
     },
     {
@@ -111,26 +111,17 @@
   },
   "comparisons": {
     "baselineAvailable": true,
-    "previousRunId": "20261109071405123",
-    "newInSample": 14,
-    "newOfficialRecords": 9,
-    "newUnverifiedLeads": 5,
-    "absentFromSample": 9,
+    "previousRunId": "20261109224349245",
+    "newInSample": 5,
+    "newOfficialRecords": 4,
+    "newUnverifiedLeads": 1,
+    "absentFromSample": 4,
     "newObservationIds": [
-      "152e20f92d63e5ddbcb8cc0b",
-      "407a71476ece8a806e28e907",
-      "507914b636771f57568f5068",
-      "87105e2ee1fb0fe1cb6162e8",
-      "ebf8f63e7ad07b442b00a187",
-      "6801719282d9192d4f25b782",
-      "6b1f84e5fe0af68d7ae1a20a",
-      "cba47503436e1d7cdadd6997",
-      "12b8c22ffd6d8eda3d87e49b",
-      "a7ab17b5803388ba6d13b4e9",
-      "8e8bc8c7794d49bfea8b8849",
-      "0110a490fdb99b47630228f5",
-      "368c3824cbe8e5db20ae313e",
-      "4b51eb3a6b3a4e8609b559a8"
+      "8d498690137d9d9dd1a798bb",
+      "b894dc4c5aa8a3e8b9e23bf4",
+      "92c5ac88664dcf0ae0ef5c4b",
+      "1bf6cbb692a120d02e286f1f",
+      "f4c1750c43f85ac14f84ff46"
     ],
     "note": "Run-to-run sample differences are not necessarily new or resolved world events."
   },
@@ -144,16 +135,30 @@
   },
   "observations": [
     {
-      "id": "152e20f92d63e5ddbcb8cc0b",
-      "title": "Space Weather Message Code: WARK04 Serial Number: 5452 Issue Time: 2026 Nov 09 1755 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Numbe",
+      "id": "8d498690137d9d9dd1a798bb",
+      "title": "Space Weather Message Code: ALTEF3 Serial Number: 3771 Issue Time: 2026 Nov 10 0501 UTC CONTINUED ALERT: Electron 2MeV Integral Flux exceeded 1,000pfu Continuation o",
       "url": "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
       "source": "noaa-space-weather",
       "domain": "earth-space",
       "kind": "forecast-or-alert",
       "classification": "official-record",
-      "description": "Space Weather Message Code: WARK04 Serial Number: 5452 Issue Time: 2026 Nov 09 1755 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5451 Valid From: 2026 Nov 09 0556 UTC Now Valid Until: 2026 Nov 10 0600 UTC Warning Condition: Persistence NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic ",
-      "publishedAt": "2026-11-09T17:55:46.807Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "description": "Space Weather Message Code: ALTEF3 Serial Number: 3771 Issue Time: 2026 Nov 10 0501 UTC CONTINUED ALERT: Electron 2MeV Integral Flux exceeded 1,000pfu Continuation of Serial Number: 3770 Begin Time: 2026 Nov 08 2245 UTC Yesterday Maximum 2MeV Flux: 4674 pfu Max time: 2026 Nov 09 1630 UTC",
+      "publishedAt": "2026-11-10T05:01:21.150Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
+      "independentlyVerified": false,
+      "predictedDate": null
+    },
+    {
+      "id": "b894dc4c5aa8a3e8b9e23bf4",
+      "title": "Space Weather Message Code: WARK04 Serial Number: 5453 Issue Time: 2026 Nov 10 0302 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Numbe",
+      "url": "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
+      "source": "noaa-space-weather",
+      "domain": "earth-space",
+      "kind": "forecast-or-alert",
+      "classification": "official-record",
+      "description": "Space Weather Message Code: WARK04 Serial Number: 5453 Issue Time: 2026 Nov 10 0302 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5452 Valid From: 2026 Nov 09 0556 UTC Now Valid Until: 2026 Nov 10 1200 UTC Warning Condition: Persistence NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic ",
+      "publishedAt": "2026-11-10T03:02:27.917Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -166,8 +171,8 @@
       "kind": "observed-hazard",
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
-      "publishedAt": "2026-11-09T12:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "publishedAt": "2026-11-10T00:00:00.000Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -180,8 +185,22 @@
       "kind": "observed-hazard",
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
-      "publishedAt": "2026-11-09T12:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "publishedAt": "2026-11-10T00:00:00.000Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
+      "independentlyVerified": false,
+      "predictedDate": null
+    },
+    {
+      "id": "152e20f92d63e5ddbcb8cc0b",
+      "title": "Space Weather Message Code: WARK04 Serial Number: 5452 Issue Time: 2026 Nov 09 1755 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Numbe",
+      "url": "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
+      "source": "noaa-space-weather",
+      "domain": "earth-space",
+      "kind": "forecast-or-alert",
+      "classification": "official-record",
+      "description": "Space Weather Message Code: WARK04 Serial Number: 5452 Issue Time: 2026 Nov 09 1755 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5451 Valid From: 2026 Nov 09 0556 UTC Now Valid Until: 2026 Nov 10 0600 UTC Warning Condition: Persistence NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic ",
+      "publishedAt": "2026-11-09T17:55:46.807Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -195,7 +214,7 @@
       "classification": "unverified-lead",
       "description": "Georgia weather outlook notes frost and a chance of storms&nbsp;&nbsp;Cobb Courier",
       "publishedAt": "2026-11-09T11:43:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -209,7 +228,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: ALTEF3 Serial Number: 3770 Issue Time: 2026 Nov 09 1001 UTC CONTINUED ALERT: Electron 2MeV Integral Flux exceeded 1,000pfu Continuation of Serial Number: 3769 Begin Time: 2026 Nov 08 2245 UTC Yesterday Maximum 2MeV Flux: 1228 pfu Max time: 2026 Nov 08 2335 UTC",
       "publishedAt": "2026-11-09T10:01:44.480Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -223,7 +242,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: WARK04 Serial Number: 5451 Issue Time: 2026 Nov 09 0556 UTC WARNING: Geomagnetic K-index of 4 expected Valid From: 2026 Nov 09 0556 UTC Valid To: 2026 Nov 09 1800 UTC Warning Conditions: Onset Comment: NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic Latitude. Induced Currents - Weak power grid ",
       "publishedAt": "2026-11-09T05:56:48.043Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -237,7 +256,7 @@
       "classification": "official-record",
       "description": "Recorded significant earthquake; not a future-event forecast",
       "publishedAt": "2026-11-09T03:34:59.466Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -251,7 +270,7 @@
       "classification": "official-record",
       "description": "GPUStack contains an improper authentication vulnerability which could allow unauthenticated administrative access, including user and model changes, persistent administrator API-key creation, disclosure of worker and cloud-provider secrets, and code execution through POST /v2/inference-backends/from-yaml.",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -265,7 +284,7 @@
       "classification": "official-record",
       "description": "OpenBSD OpenSSH on Linux contains an unexpected status code or return value vulnerability that could allow for authentication bypass.",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -279,7 +298,7 @@
       "classification": "official-record",
       "description": "SignalWire FreeSwitch contains a code injection vulnerability that permits configuration and credential disclosure, arbitrary call control, and command execution.",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -293,7 +312,7 @@
       "classification": "official-record",
       "description": "IBM Aspera Faspex contains an incorrect authorization vulnerability that could allow an authenticated user to craft a specific message to bypass authorization, causing privilege escalations.",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -307,7 +326,7 @@
       "classification": "official-record",
       "description": "This final rule sets forth routine updates to the Medicare home health payment rates in accordance with existing statutory and regulatory requirements. In addition, this final rule discusses the behavior adjustments and finalizes a temporary behavior adjustment. It also finalizes the recalibrated case-mix weights and updated functional impairment levels; comorbidity subgroups; and low-utilization payment adjustment (LUPA) thresholds for CY 2027. ",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -321,7 +340,7 @@
       "classification": "official-record",
       "description": "This final rule addresses: changes to the physician fee schedule (PFS); other changes to Medicare Part B payment policies to ensure that payment systems are updated to reflect changes in medical practice, relative value of services, and changes in the statute; codification of establishment of new policies for: the Medicare Prescription Drug Inflation Rebate Program under the Inflation Reduction Act of 2022; limiting Medicare coverage of certain i",
       "publishedAt": "2026-11-09T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -335,7 +354,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: ALTEF3 Serial Number: 3769 Issue Time: 2026 Nov 08 2324 UTC ALERT: Electron 2MeV Integral Flux exceeded 1,000pfu Threshold Reached: 2026 Nov 08 2245 UTC Station: GOES-19 Comment:",
       "publishedAt": "2026-11-08T23:24:59.403Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -349,7 +368,7 @@
       "classification": "unverified-lead",
       "description": "Eisenkot says Israel in 'devastating diplomatic crisis' as he seeks to form govt&nbsp;&nbsp;Dawn",
       "publishedAt": "2026-11-08T18:35:51.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -363,7 +382,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-11-08T18:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -377,7 +396,7 @@
       "classification": "unverified-lead",
       "description": "Cybersecurity: CISA 2030 Strategy&nbsp;&nbsp;kpmg.com",
       "publishedAt": "2026-11-08T06:36:56.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -391,7 +410,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: ALTK05 Serial Number: 2062 Issue Time: 2026 Nov 08 0203 UTC ALERT: Geomagnetic K-index of 5 Threshold Reached: 2026 Nov 08 0203 UTC Synoptic Period: 0000-0300 Active Warning: YES Noaa Scale: G1 - Minor Comment: NOAA Scale: G1 - Minor NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 60 degrees Geomagnetic Latitude. Ind",
       "publishedAt": "2026-11-08T02:03:49.380Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -405,7 +424,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: ALTK05 Serial Number: 2061 Issue Time: 2026 Nov 07 1945 UTC ALERT: Geomagnetic K-index of 5 Threshold Reached: 2026 Nov 07 1945 UTC Synoptic Period: 1800-2100 Active Warning: YES Noaa Scale: G1 - Minor Comment: NOAA Scale: G1 - Minor NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 60 degrees Geomagnetic Latitude. Ind",
       "publishedAt": "2026-11-07T19:45:37.330Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -419,7 +438,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: WARK04 Serial Number: 5450 Issue Time: 2026 Nov 07 1940 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5449 Valid From: 2026 Nov 07 0056 UTC Now Valid Until: 2026 Nov 08 2359 UTC Warning Condition: Persistence NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic ",
       "publishedAt": "2026-11-07T19:40:51.927Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -433,7 +452,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: WARK05 Serial Number: 2275 Issue Time: 2026 Nov 07 1935 UTC WARNING: Geomagnetic K-index of 5 expected Valid From: 2026 Nov 07 1935 UTC Valid To: 2026 Nov 08 2100 UTC Warning Conditions: Onset Noaa Scale: G1 - Minor Comment: NOAA Scale: G1 - Minor NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 60 degrees Geomagnetic",
       "publishedAt": "2026-11-07T19:35:10.147Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -447,7 +466,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: ALTK04 Serial Number: 2697 Issue Time: 2026 Nov 07 1920 UTC ALERT: Geomagnetic K-index of 4 Threshold Reached: 2026 Nov 07 1920 UTC Synoptic Period: 1800-2100 Active Warning: YES Comment: NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic Latitude. Induced Currents - Weak power grid fluctuations c",
       "publishedAt": "2026-11-07T19:20:43.007Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -461,7 +480,7 @@
       "classification": "unverified-lead",
       "description": "European troops set to train in Poland for postwar Ukraine deployment&nbsp;&nbsp;Military Times",
       "publishedAt": "2026-11-07T15:05:44.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -475,21 +494,7 @@
       "classification": "official-record",
       "description": "Space Weather Message Code: WARK04 Serial Number: 5449 Issue Time: 2026 Nov 07 1155 UTC EXTENDED WARNING: Geomagnetic K-index of 4 expected Extension to Serial Number: 5448 Valid From: 2026 Nov 07 0056 UTC Now Valid Until: 2026 Nov 07 2359 UTC Warning Condition: Persistence NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic ",
       "publishedAt": "2026-11-07T11:55:30.917Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
-      "independentlyVerified": false,
-      "predictedDate": null
-    },
-    {
-      "id": "02bb4a1029c98aae98e5a41c",
-      "title": "Space Weather Message Code: WATA20 Serial Number: 1137 Issue Time: 2026 Nov 07 0626 UTC WATCH: Geomagnetic Storm Category G1 Predicted Highest Storm Level Predicted",
-      "url": "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
-      "source": "noaa-space-weather",
-      "domain": "earth-space",
-      "kind": "forecast-or-alert",
-      "classification": "official-record",
-      "description": "Space Weather Message Code: WATA20 Serial Number: 1137 Issue Time: 2026 Nov 07 0626 UTC WATCH: Geomagnetic Storm Category G1 Predicted Highest Storm Level Predicted by Day: Nov 07: G1 (Minor) Nov 08: G1 (Minor) Nov 09: G1 (Minor) THIS SUPERSEDES ANY/ALL PRIOR WATCHES IN EFFECT Comment: NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 60 degrees ",
-      "publishedAt": "2026-11-07T06:26:14.357Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -503,21 +508,7 @@
       "classification": "unverified-lead",
       "description": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo, Kenya and Nigeria&nbsp;&nbsp;World Health Organization (WHO)",
       "publishedAt": "2026-11-07T01:45:34.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
-      "independentlyVerified": false,
-      "predictedDate": null
-    },
-    {
-      "id": "67ae22e53ff9c38b1918e053",
-      "title": "Space Weather Message Code: WARK04 Serial Number: 5448 Issue Time: 2026 Nov 07 0056 UTC WARNING: Geomagnetic K-index of 4 expected Valid From: 2026 Nov 07 0056 UTC",
-      "url": "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
-      "source": "noaa-space-weather",
-      "domain": "earth-space",
-      "kind": "forecast-or-alert",
-      "classification": "official-record",
-      "description": "Space Weather Message Code: WARK04 Serial Number: 5448 Issue Time: 2026 Nov 07 0056 UTC WARNING: Geomagnetic K-index of 4 expected Valid From: 2026 Nov 07 0056 UTC Valid To: 2026 Nov 07 1200 UTC Warning Conditions: Onset Comment: NOAA Space Weather Scale descriptions can be found at www.swpc.noaa.gov/noaa-scales-explanation Potential Impacts: Area of impact primarily poleward of 65 degrees Geomagnetic Latitude. Induced Currents - Weak power grid ",
-      "publishedAt": "2026-11-07T00:56:27.930Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -531,7 +522,7 @@
       "classification": "unverified-lead",
       "description": "Strong northern lights forecast. Clouds will make viewing difficult&nbsp;&nbsp;Belleville News-Democrat",
       "publishedAt": "2026-11-06T15:46:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -545,7 +536,7 @@
       "classification": "unverified-lead",
       "description": "Northern Lights Alert: 22 States May See Aurora This Weekend&nbsp;&nbsp;Forbes",
       "publishedAt": "2026-11-06T15:13:12.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -559,7 +550,7 @@
       "classification": "unverified-lead",
       "description": "FEMA to Assess Delaware’s Nuclear Emergency Readiness in Salem and Hope Creek Exercise&nbsp;&nbsp;Homeland Security Today",
       "publishedAt": "2026-11-06T07:06:31.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -573,7 +564,7 @@
       "classification": "official-record",
       "description": "SonicWall SonicOS SSLVPN contains a use of single-factor authentication vulnerability that may allow a user with valid credentials for an alternate authentication method to bypass SAML authentication controls. Successful exploitation may also bypass SAML-enforced multi-factor authentication (MFA).",
       "publishedAt": "2026-11-06T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -587,7 +578,7 @@
       "classification": "official-record",
       "description": "This final rule with comment period revises the Medicare Hospital Outpatient Prospective Payment System (OPPS) and the Medicare Ambulatory Surgical Center (ASC) payment system for calendar year 2027 based on our continuing experience with these systems. We also describe the changes to the amounts and factors used to determine the payment rates for Medicare services paid under the OPPS and those paid under the ASC payment systems. In addition, thi",
       "publishedAt": "2026-11-06T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -601,7 +592,7 @@
       "classification": "official-record",
       "description": "The Emergency Communications Division (ECD) within Cybersecurity and Infrastructure Security Agency (CISA) submits the following Information Collection Request (ICR) to the Office of Management and Budget (OMB) for review and clearance.",
       "publishedAt": "2026-11-06T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -615,7 +606,7 @@
       "classification": "unverified-lead",
       "description": "Milam County plans emergency response drill&nbsp;&nbsp;kcentv.com",
       "publishedAt": "2026-11-05T22:03:47.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -629,7 +620,21 @@
       "classification": "unverified-lead",
       "description": "Presidential Advisor Song's Remarks Risk U.S. Diplomatic Space&nbsp;&nbsp;조선일보",
       "publishedAt": "2026-11-05T21:24:49.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
+      "independentlyVerified": false,
+      "predictedDate": null
+    },
+    {
+      "id": "92c5ac88664dcf0ae0ef5c4b",
+      "title": "Wildfire FOOT CREEK, Johnson, Wyoming",
+      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_26258",
+      "source": "nasa-natural-events",
+      "domain": "earth-space",
+      "kind": "observed-hazard",
+      "classification": "official-record",
+      "description": "Ongoing event (may have begun much earlier than this report)",
+      "publishedAt": "2026-11-05T16:11:00.000Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -643,7 +648,7 @@
       "classification": "unverified-lead",
       "description": "Rising debt, non-bank finance may limit ECB policy flexibility, says Schnabel&nbsp;&nbsp;The Economic Times",
       "publishedAt": "2026-11-05T10:01:01.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -657,7 +662,7 @@
       "classification": "unverified-lead",
       "description": "NATO’s approach to space&nbsp;&nbsp;North Atlantic Treaty Organization | NATO",
       "publishedAt": "2026-11-05T08:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -671,7 +676,7 @@
       "classification": "unverified-lead",
       "description": "Investigations of Foodborne Illness Outbreaks&nbsp;&nbsp;U.S. Food and Drug Administration (.gov)",
       "publishedAt": "2026-11-04T14:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -685,7 +690,7 @@
       "classification": "official-record",
       "description": "Apple iOS, iPadOS, macOS, Safari, tvOS and watchOS 10.5 contain an improper authentication vulnerability which could allow an attacker with arbitrary read and write capability to bypass pointer authentication.",
       "publishedAt": "2026-11-04T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -699,7 +704,7 @@
       "classification": "unverified-lead",
       "description": "FSMA Final Rule on Requirements for Additional Traceability Records for Certain Foods&nbsp;&nbsp;U.S. Food and Drug Administration (.gov)",
       "publishedAt": "2026-11-04T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -713,7 +718,7 @@
       "classification": "unverified-lead",
       "description": "The bond market time bomb: Could rising yields trigger another banking crisis?&nbsp;&nbsp;Essential Business",
       "publishedAt": "2026-11-03T18:14:47.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -727,7 +732,21 @@
       "classification": "unverified-lead",
       "description": "Arab States Mark IDDRR 2026 through regional cooperation and community-led preparedness&nbsp;&nbsp;PreventionWeb.net",
       "publishedAt": "2026-11-03T12:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
+      "independentlyVerified": false,
+      "predictedDate": null
+    },
+    {
+      "id": "1bf6cbb692a120d02e286f1f",
+      "title": "Prescribed Fire Cold Springs RX, Wasatch, Utah",
+      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_26260",
+      "source": "nasa-natural-events",
+      "domain": "earth-space",
+      "kind": "observed-hazard",
+      "classification": "official-record",
+      "description": "Ongoing event (may have begun much earlier than this report)",
+      "publishedAt": "2026-11-03T10:48:00.000Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -741,7 +760,7 @@
       "classification": "unverified-lead",
       "description": "European force to hold first Ukraine support exercise in Poland&nbsp;&nbsp;France 24",
       "publishedAt": "2026-11-03T01:43:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -755,7 +774,7 @@
       "classification": "official-record",
       "description": "WordPress WordPress Core contains a time-of-check time-of-use (TOCTOU) race condition vulnerability that could allow unauthenticated attackers to execute code on the server during the upgrade window. This is due to predictable, web-accessible staging paths used during full-package core upgrades.",
       "publishedAt": "2026-11-03T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -769,7 +788,7 @@
       "classification": "official-record",
       "description": "This final rule revises the Conditions for Coverage for Organ Procurement Organizations (OPOs) to clarify outstanding procedural questions and provide additional operational flexibility for OPOs to achieve high performance resulting in the successful procurement, distribution, and transplantation of more life-saving organs. This rule revises definitions, revises the designation requirements for OPOs, clarifies when an OPO's service area is open f",
       "publishedAt": "2026-11-03T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -783,21 +802,7 @@
       "classification": "unverified-lead",
       "description": "As the White House touts its AI task force, CISA is conspicuously missing&nbsp;&nbsp;Cybersecurity Dive",
       "publishedAt": "2026-11-02T16:17:45.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
-      "independentlyVerified": false,
-      "predictedDate": null
-    },
-    {
-      "id": "368c3824cbe8e5db20ae313e",
-      "title": "Global Monkeypox: Current Situation - Centers for Disease Control and Prevention | CDC (.gov)",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5hN2FwbDA2U3VfUENnOFJ0LTNvTUs2U3VWbzlKYnJpMElxZ05qLVhwRDJBMUxjVGhucGNMa042ODJrVll2bjdOWXlFZ3FHMXA1SVVxSVJqYmlPem5nZnh6WHN4LXF2YmlIelE?oc=5",
-      "source": "news-rss",
-      "domain": "public-health",
-      "kind": "public-reporting",
-      "classification": "unverified-lead",
-      "description": "Global Monkeypox: Current Situation&nbsp;&nbsp;Centers for Disease Control and Prevention | CDC (.gov)",
-      "publishedAt": "2026-11-02T08:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -811,7 +816,7 @@
       "classification": "unverified-lead",
       "description": "2030 Decennial Census Proposed Rule: County Advocacy Hub&nbsp;&nbsp;National Association of Counties",
       "publishedAt": "2026-11-02T08:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -825,7 +830,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-11-02T07:58:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -839,7 +844,7 @@
       "classification": "unverified-lead",
       "description": "TARP, Emergency Intervention, and Equity Stakes&nbsp;&nbsp;Cato Institute",
       "publishedAt": "2026-11-02T07:33:14.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -853,7 +858,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-30T10:13:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -867,7 +872,21 @@
       "classification": "unverified-lead",
       "description": "FEMA to Interrupt TV and Radio Across the US on November 17, but Your Phone Won't Get an Alert&nbsp;&nbsp;www.techtimes.co.uk",
       "publishedAt": "2026-10-30T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
+      "independentlyVerified": false,
+      "predictedDate": null
+    },
+    {
+      "id": "f4c1750c43f85ac14f84ff46",
+      "title": "Information for Travelers Returning from Ebola-Affected Areas - Centers for Disease Control and Prevention | CDC (.gov)",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5iWWh1cnAzdVpkcUh0OXI5eTlmMnZRMHJrdnY2WnNMVDZwX1d3enJoMkQxTDdnbXQ4Qm03MXQtaXd0TDFWbzgxZWVfUWE4RUhESE5wWW1PUXFRWDJlV2ZVb1pHc3BnX3pINTNiNVdRUUdCX0JabXdR?oc=5",
+      "source": "news-rss",
+      "domain": "public-health",
+      "kind": "public-reporting",
+      "classification": "unverified-lead",
+      "description": "Information for Travelers Returning from Ebola-Affected Areas&nbsp;&nbsp;Centers for Disease Control and Prevention | CDC (.gov)",
+      "publishedAt": "2026-10-30T07:00:00.000Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -881,7 +900,7 @@
       "classification": "unverified-lead",
       "description": "Fiji advances preparedness for earthquakes, tsunamis and other geohazards&nbsp;&nbsp;UNESCO",
       "publishedAt": "2026-10-30T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -895,7 +914,7 @@
       "classification": "unverified-lead",
       "description": "HHS Final Rule Amends Section 504 Regulations to Codify Statutory Exclusions from the Definition of Disability&nbsp;&nbsp;HHS.gov",
       "publishedAt": "2026-10-30T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -909,7 +928,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-30T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -923,7 +942,7 @@
       "classification": "official-record",
       "description": "Ivanti Connect Secure contains a generation of predictable numbers or identifiers vulnerability that allows a remote authenticated attacker to upload files with attacker-controlled content to a known location on disk. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-111357.",
       "publishedAt": "2026-10-30T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -937,7 +956,7 @@
       "classification": "official-record",
       "description": "Ivanti Connect Secure contains a missing authentication for critical function vulnerability that could allow a local authenticated attacker to escalate their privileges. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-118527.",
       "publishedAt": "2026-10-30T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -951,7 +970,7 @@
       "classification": "official-record",
       "description": "The Centers for Disease Control and Prevention (CDC), a component of the Department of Health and Human Services (HHS), announces the issuance of an Amended Order under Sections 361, 365, 368, and 369 of the Public Health Service Act, and associated implementing regulations, prohibiting the boarding of any person who is not otherwise subject to an exemption on any aircraft destined to the United States from a foreign country unless the person pre",
       "publishedAt": "2026-10-30T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -965,7 +984,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-29T12:16:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -979,7 +998,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-29T11:37:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -993,7 +1012,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-29T11:08:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1007,7 +1026,7 @@
       "classification": "unverified-lead",
       "description": "FEMA, FCC schedule nationwide Emergency Alert System test for Nov. 17&nbsp;&nbsp;Florida’s Voice",
       "publishedAt": "2026-10-29T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1021,7 +1040,7 @@
       "classification": "official-record",
       "description": "GitLab Community Edition and Enterprise Edition contain a integer overflow or wraparound vulnerability that could allow an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD configuration, due to insufficient regular expression validation.",
       "publishedAt": "2026-10-29T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1035,7 +1054,7 @@
       "classification": "official-record",
       "description": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software contains an unchecked return value to NULL pointer dereference vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.",
       "publishedAt": "2026-10-29T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1049,35 +1068,7 @@
       "classification": "official-record",
       "description": "Ongoing event (may have begun much earlier than this report)",
       "publishedAt": "2026-10-28T18:02:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
-      "independentlyVerified": false,
-      "predictedDate": null
-    },
-    {
-      "id": "1085d2f69af119f0f8ae035a",
-      "title": "Prescribed Fire Walker Hill 3 Piles RX, Coconino, Arizona",
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25829",
-      "source": "nasa-natural-events",
-      "domain": "earth-space",
-      "kind": "observed-hazard",
-      "classification": "official-record",
-      "description": "Ongoing event (may have begun much earlier than this report)",
-      "publishedAt": "2026-10-28T11:22:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
-      "independentlyVerified": false,
-      "predictedDate": null
-    },
-    {
-      "id": "bcf8390d30e01f6cfb45fd44",
-      "title": "Prescribed Fire Brie Slash Piles RX, Coconino, Arizona",
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25830",
-      "source": "nasa-natural-events",
-      "domain": "earth-space",
-      "kind": "observed-hazard",
-      "classification": "official-record",
-      "description": "Ongoing event (may have begun much earlier than this report)",
-      "publishedAt": "2026-10-28T11:21:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1091,7 +1082,7 @@
       "classification": "official-record",
       "description": "Broadcom VMWare ESX contains an insufficient logging vulnerability that could allow a malicious actor with admin access to perform certain operations without being logged.",
       "publishedAt": "2026-10-28T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1105,7 +1096,7 @@
       "classification": "official-record",
       "description": "This final rule focuses on deregulatory actions identified in HHS regulations regarding health information technology standards, implementation specifications, and certification criteria and regarding certification programs for health information technology. This final rule reduces burden, offers flexibility to both developers and providers, and supports innovation through the removal and revision of certain certification criteria and regulatory ",
       "publishedAt": "2026-10-28T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1119,7 +1110,7 @@
       "classification": "official-record",
       "description": "The Food and Drug Administration (FDA) is announcing the approval of a product redeeming a material threat MCM priority review voucher. The Federal Food, Drug, and Cosmetic Act (the FD&C Act), as amended by the 21st Century Cures Act (Cures Act), authorizes FDA to award priority review vouchers to sponsors of approved material threat MCM product applications that meet certain criteria. FDA is required to publish notice of the issuance of material",
       "publishedAt": "2026-10-28T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1133,7 +1124,7 @@
       "classification": "unverified-lead",
       "description": "Iran travel advice&nbsp;&nbsp;GOV.UK",
       "publishedAt": "2026-10-27T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1147,7 +1138,7 @@
       "classification": "unverified-lead",
       "description": "CISA Seeks to Bolster National Cyber Defense With New Strategy&nbsp;&nbsp;ExecutiveGov",
       "publishedAt": "2026-10-27T07:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1161,7 +1152,7 @@
       "classification": "official-record",
       "description": "The Centers for Disease Control and Prevention (CDC), a component of the Department of Health and Human Services (HHS), announces it is issuing an Order under Sections 361, 365, 368, and 369 of the Public Health Service Act, and associated implementing regulations, prohibiting the boarding of any passenger who is not otherwise subject to an exemption on any aircraft destined to the United States from a foreign country unless the passenger present",
       "publishedAt": "2026-10-27T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1175,7 +1166,7 @@
       "classification": "official-record",
       "description": "State: FL; type: DR",
       "publishedAt": "2026-10-27T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1189,7 +1180,7 @@
       "classification": "official-record",
       "description": "The Federal Emergency Management Agency (FEMA), as part of its continuing effort to reduce paperwork and respondent burden, invites the general public to take this opportunity to comment on an extension, without change, of a currently approved information collection. In accordance with the Paperwork Reduction Act of 1995, this notice seeks comments concerning the admission applications and student stipend agreements for FEMA courses and programs ",
       "publishedAt": "2026-10-21T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1203,7 +1194,7 @@
       "classification": "official-record",
       "description": "The Marine Minerals Administration (MMA) will conduct an auction for lease areas offered in the American Samoa Outer Continental Shelf (OCS) Pacific Mineral Lease Sale 1 (Lease Sale PACM-1), in accordance with the Outer Continental Shelf Lands Act (OCSLA), as amended, and its implementing regulations. The Final Leasing Notice (FLN) package for this lease sale contains information essential to potential bidders, including Information to Lessees an",
       "publishedAt": "2026-10-20T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     },
@@ -1217,7 +1208,7 @@
       "classification": "official-record",
       "description": "The Federal Energy Regulatory Commission proposes to revise its regulations to establish procedures for authorizing activities at liquefied natural gas plants without case-specific authorization orders under sections 3 or 7 of the Natural Gas Act.",
       "publishedAt": "2026-10-20T00:00:00.000Z",
-      "collectedAt": "2026-11-09T22:43:49.245Z",
+      "collectedAt": "2026-11-10T07:45:58.553Z",
       "independentlyVerified": false,
       "predictedDate": null
     }
